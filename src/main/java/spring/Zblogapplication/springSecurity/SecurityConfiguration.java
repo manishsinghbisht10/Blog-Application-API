@@ -29,15 +29,10 @@ public class SecurityConfiguration{
 	public AuthenticationProvider authProvider() {
 		DaoAuthenticationProvider provider=new DaoAuthenticationProvider();
 		provider.setUserDetailsService(userDetailsService);
-		provider.setPasswordEncoder(encoder());
+		provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
 		return provider;
 	}
 
-	@Bean
-	public PasswordEncoder encoder() {
-	    return new BCryptPasswordEncoder();
-	}
-	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	http
