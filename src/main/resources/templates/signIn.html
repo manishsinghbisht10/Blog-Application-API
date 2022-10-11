@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+  <head>
+ <meta charset="utf-8">
+ <title></title>
+ <style>
+</style>
+  </head>
+  <body>
+  <h1>Please Sign In</h1>
+	<form style="line-height:2;" action="#" th:action="@{/saveSingInData}">
+		 <input type="text"  name="name" placeholder="Name"><br> 
+		 <input type="text"  name="username" placeholder="UserName"><br> 
+		 <input type="text"  name="email" placeholder="email"><br> 
+	     <input type="text"  name="password" placeholder="Password"><br>   
+	     <button style="margin-left:2rem;"type="submit" name="button">Submit</button>
+    </form>
+  </body>
+</html>

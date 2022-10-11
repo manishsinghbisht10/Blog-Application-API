@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+  <div>
+      <div th:each="obj: ${post}" style="height:200px; width:100%; margin-top:10px;display:inline-block;border-style:solid; padding:0 5px;">
+			<h3 th:text="${obj.name}" />
+			<p th:text="${obj.userBlog}"/>
+	    	<h3 style="display:inline-block; margin-top:0;"><a th:href="@{/saveDraft(id=${obj.id})}">Publish</a></h3>
+	    	<h3 style="display:inline-block; margin-top:0; margin-left:10px;"><a th:href="@{/updatePost(id=${obj.id})}">Update</a></h3>	
+      </div >
+    </div>
+   </body>
+ </html>

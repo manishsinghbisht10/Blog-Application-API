@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+  <head>
+ <meta charset="utf-8">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> 
+ <title></title>
+
+  </head>
+  <body>
+  <h2 style="margin-bottom:20px;"><a href="/home">Home</a></h2>
+  <h1>Welcome to BlogWriter</h1>
+	<form style="line-height:2;" action="#" th:action="@{/savePost}" th:object="${object}"  method="post">
+		 <input type="hidden" th:field="*{id}">
+	     <input type="text" th:field="*{title}" placeholder="Title Of Blog"><br> 
+	     <div  th:if="${role=='ADMIN'}"><input type="text" th:field="*{name}" placeholder="Author Name"><br></div>     
+	     <input type="text" th:value="${tag}" placeholder="Write tags" id="tag" name="tag"><br>	     	   
+	     <input type="text" th:field="*{publishedAt}" placeholder="Published At"><br>
+	      Want to publish?<input type="checkbox" th:field="*{isPublished}" id="" name="isPublished" ><br>
+	     <textarea id="text" th:field="*{userBlog}" >Write here...</textarea><br>
+	     
+	     <button style="margin-left:2rem;"type="submit" name="button">Submit</button>
+    </form>
+  </body>
+</html>

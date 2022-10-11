@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+    	h3{
+    		display:inline-block;
+    		margin-left:8px;
+    	}
+    	.box{
+    		margin-top:10px;
+    		padding:5px;
+    		border-style:solid; 
+    	}
+    	body{
+    	margin: auto 15px;}
+    	form{
+    		line-height:2;
+    	}
+    </style>
+  </head>
+  <body>
+		<div>
+			<div th:each="obj: ${BlogPost}">
+				<div class="box" th:text="${obj.userBlog}"></div>		
+			   	<h3 th:if="${obj.name.equals(userName)} OR ${admin=='ADMIN'}" style="display:inline-block; margin-top:0;"><a th:href="@{/updatePost(id=${obj.id})}">Update</a></h3>
+				<h3 th:if="${obj.name.equals(userName)} OR ${admin=='ADMIN'}" style="display:inline-block; margin-top:0;"><a th:href="@{/deletePost(id=${obj.id})}">Delete</a></h3>
+			</div>
+		</div>
+		
+		<!-- Comments -->
+		<h1>Comments</h1>
+		<div style="border-style:solid;">
+			<div th:each="obj: ${BlogPost.comments}">	
+				<h2 style="margin-bottom:0;" th:text="${obj.name}"></h2>
+				<p style="margin-top:0; color:grey;" th:text="${obj.email}">
+				<p th:text="${obj.comment}">
+				<h3 th:if="${BlogPost.name.equals(userName)} OR ${admin=='ADMIN'}" style="display:inline-block; margin-top:0;"><a th:href="@{/update(id=${obj.id})}">Update</a></h3>
+				<h3 th:if="${BlogPost.name.equals(userName)} OR ${admin=='ADMIN'}" style="display:inline-block; margin-top:0;"><a th:href="@{/deleteComment(id=${obj.id})}">Delete</a></h3>
+			</div>
+		</div>
+	     <br>
+	     
+	     <!-- Comment form -->
+	     <h2>Write new Comment</h2>
+		<form action="#" th:action="@{/saveComment/ {id} (id=${BlogPost.id})}"  method="post">
+		<div th:if="${!userName.equals('anonymousUser')}">
+			  <input name="name" type="hidden" th:value="${user.name}" ><br> 
+			  <input name="email"type="hidden" th:value="${user.email}" ><br>
+		</div>
+		<div th:if="${userName.equals('anonymousUser')}">
+			  <input name="name" type="text" placeholder="User Name"><br> 
+			  <input name="email"type="text" placeholder="User Email"><br>
+		</div>
+		     <textarea id="comment"name="comment" >Comment here...</textarea><br>
+		     <button style="margin-left:35px" type="submit" name="post_id">Comment</button>
+    	</form>
+  </body>
+</html>

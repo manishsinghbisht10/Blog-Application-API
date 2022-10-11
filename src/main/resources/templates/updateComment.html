@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <div th:each="object: ${obj}">
+  	<form action="#" th:action="@{/updateComment/{id} (id=${object.id})}"  method="post">
+	     name:<input name="name" type="text" th:value="${object.name}"><br> 
+	     Email:<input name="email"type="text" th:value="${object.email}"><br>
+	     <textarea id="comment"name="comment" th:value="${object.comment}"></textarea><br>
+	     <button type="submit" name="post_id" >Comment</button>
+    </form>
+  
+  </div>
+ 
+ </body>
