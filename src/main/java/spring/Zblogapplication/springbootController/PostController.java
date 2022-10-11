@@ -34,9 +34,6 @@ public class PostController {
 	@Autowired
 	 UserJpaRepository userService;
 	
-	@Autowired
-	private PasswordEncoder bCryptPasswordEncoder;
-	
 	@GetMapping("/showAddForm")
 	public String showAddForm(Model theModel) {
 		Post post=new Post();
@@ -89,7 +86,6 @@ public class PostController {
 			LocalDateTime datetime = LocalDateTime.now();  
 		    post.setUpdatedAt(datetime);
 		}else {
-			user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
 			LocalDateTime datetime = LocalDateTime.now();  
 		    post.setCreatedAt(datetime);
 		}
